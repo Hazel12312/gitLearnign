@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.LoginMapper">
+
+    <select id="findUser" parameterType="String" resultType="User">
+        select * from t_user where user_name = #{user_name} and user_password = #{user_password}
+    </select>
+
+    <select id="findAdmin" parameterType="String" resultType="Admin">
+        select * from t_admin where admin_name = #{admin_name} and admin_password = #{admin_password};
+    </select>
+
+    <update id="addBalance">
+        update t_user set balance = balance + #{balance} where user_id = #{user_id}
+    </update>
+
+    <update id="deleteBalance">
+        update t_user set balance = balance - #{balance} where user_id = #{user_id};
+    </update>
+
+    <select id="selectMyLog" resultType="Log">
+        select * from t_log where userid = #{userid};
+    </select>
+
+    <insert id="insertLog">
+        insert into t_log(log_type, log_amount, userid) values (#{log_type}, #{log_amount}, #{userid});
+    </insert>
+
+    <select id="findUserByName" parameterType="String" resultType="User">
+        select * from t_user where user_name = #{user_name};
+    </select>
+
+    <insert id="insertUser">
+        insert into t_user(user_name, user_password) values (#{user_name}, #{user_password});
+    </insert>
+
+</mapper>

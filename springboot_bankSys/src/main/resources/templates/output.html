@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/css/bootstrap.min.css}">
+    <script th:src="@{/dist/jquery-3.6.0.js}"></script>
+    <script th:src="@{/dist/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+取款页面
+<form class="form-inline" action="/output2">
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <input type="text" class="form-control" id="exampleInputAmount" placeholder="金额" name="money">
+            <div class="input-group-addon">.00</div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">取款</button>
+</form>
+</body>
+</html>

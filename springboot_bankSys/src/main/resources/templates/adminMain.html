@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/css/bootstrap.min.css}">
+    <script th:src="@{/dist/jquery-3.6.0.js}"></script>
+    <script th:src="@{/dist/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <ul class="nav nav-tabs" id="menu">
+                <li class="active">
+                    <a href="#">首页</a>
+                </li>
+                <li>
+                    <a href="#all">所有用户</a>
+                </li>
+                <li>
+                    <a href="#log">日志</a>
+                </li>
+                <li class="dropdown pull-right">
+                    <a href="#exit" data-toggle="dropdown" class="dropdown-toggle">退出<strong class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#exit">退出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="content" style="float: left"></div>
+</body>
+<script>
+    $(function () {
+        $("#content").load("home"); // 加载首页
+        $("#menu").on("click", "li", function () {
+            var sId = $(this).find("a").attr("href"); //获取锚点
+            console.log(sId);
+            loadInner(sId);
+        });
+
+        function loadInner(sId) {
+            var path;
+            switch (sId) {
+                case "#home":
+                    path = "home";
+                    break;
+                case "#all":
+                    path = "all";
+                    break;
+                case "#log":
+                    path = "log";
+                    break;
+                case "#exit":
+                    // location.href = "index.jsp";
+                    path = "logout"; //用户下线，session销毁
+                    location.href = "login";
+                    break;
+                default:
+                    path = "home";
+                    break;
+            }
+            $("#content").load(path); //加载相对应的内容
+        }
+    });
+</script>
+</html>
